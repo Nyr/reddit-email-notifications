@@ -4,8 +4,8 @@
 MAIL="you@example.com"
 # FROMMAIL = mail which will appear in the "from" header of the notifications
 FROMMAIL="noreply@example.com"
-# Get your private inbox feed here: https://ssl.reddit.com/prefs/feeds/
-RSS_URL="http://www.reddit.com/message/inbox/.rss?feed=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&user=XXXXX"
+# Get your private inbox feed here: https://www.reddit.com/prefs/feeds/
+RSS_URL="https://www.reddit.com/message/inbox/.rss?feed=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&user=XXXXX"
 
 # No need to edit from here :)
 BASEDIR=$(dirname $0)
@@ -15,7 +15,7 @@ SENTITEMS="$BASEDIR/output/sentitems.txt"
 MAILTMP="$BASEDIR/output/mail.tmp"
 
 # Get the feed, remove crap and the empty line at the end
-wget -qO- -T 15 -t 3 $RSS_URL | xmlstarlet sel -t -m //channel/item -v "link" -o " %#%#%#%#%" -v "title" -n | \
+wget -qO- -T 15 -t 3 -–no-check-certificate $RSS_URL | xmlstarlet sel -t -m //channel/item -v "link" -o " %#%#%#%#%" -v "title" -n | \
 sed 's/ via .*//' | sed 's/ sent.*//' | sed 's/%#%#%#%#%.*from //g' | sed '/^$/d'> $NEWITEMS
 
 # Check if feed download was successful
