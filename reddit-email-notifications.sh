@@ -39,7 +39,7 @@ while IFS= read -r LINE; do
 		echo "$user has sent you a message:" >> $MAILTMP
 		echo >> $MAILTMP
 		echo "$url" >> $MAILTMP
-		cat $MAILTMP | mailx -r $FROMMAIL -s "Message from $user on reddit" $MAIL
+		mail -a "From: $FROMMAIL" -s "Message from $user on reddit" $MAIL < $MAILTMP
 		# Add it to the log
 		echo $url $user >> $SENTITEMS
 	fi

@@ -9,4 +9,4 @@ Unix based system with `xmlstarlet` available. Just get it from your package man
 2. Edit `MAIL` `FROMMAIL` and `RSS_URL` on the script and add it to your cron tab so it runs periodically.
 
 ###Known limitations
-- The `-r` flag of mailx works on Debian but it doesn't in Mac OS X so you may need to remove it.
+- The `-a` flag of mail works on Debian but it doesn't in Mac OS X so you may need to remove it.
