@@ -15,7 +15,7 @@ SENTITEMS="$BASEDIR/output/sentitems.txt"
 MAILTMP="$BASEDIR/output/mail.tmp"
 
 # Get the feed, remove crap and the empty line at the end
-wget -qO- -T 15 -t 3 -–no-check-certificate $RSS_URL | xmlstarlet sel -t -m //channel/item -v "link" -o " %#%#%#%#%" -v "title" -n | \
+wget -qO- -T 15 -t 3 --no-check-certificate $RSS_URL | xmlstarlet sel -t -m //channel/item -v "link" -o " %#%#%#%#%" -v "title" -n | \
 sed 's/ via .*//' | sed 's/ sent.*//' | sed 's/%#%#%#%#%.*from //g' | sed '/^$/d'> $NEWITEMS
 
 # Check if feed download was successful
